@@ -3,7 +3,7 @@
 {
 Name = azure-eventhubbeat-app-activity
   DataType = "app-activity"
-  Conditions= [ """eventhubbeat_APL_Azure""", """"category":"Device"""", """"operationName":"Update device"""", """"activityDisplayName"""" ]
+  Conditions= [ """"category":"Device"""", """"operationName":"Update device"""", """"activityDisplayName"""" ]
   Fields = ${MSParserTemplates.ms-azure-eventhubs-activity.Fields}[
     """({category}Device)""",
     """"operationType":"({activity_type}[^",]{1,2000})""""
@@ -25,6 +25,7 @@ ms-azure-eventhubs-activity = {
     """"{1,20}operationName"{1,20}:"{1,20}({activity}[^"]{1,2000})"{1,20}""",
     """"{1,20}result"{1,20}:"{1,20}({outcome}[^"]{1,2000})"{1,20}""",
     """({app}eventHubsAzureRecord)""",
+    """({app}eventhubbeat_APL_Azure)""",
     """"app"{1,20}:\{[^\}]{0,2000}?displayName"{1,20}:"{1,20}({app}[^",]{1,2000})"""",
     """object=({object}[^\|=\s]{1,2000})(\||\s\w{1,2000}=)""" 
   

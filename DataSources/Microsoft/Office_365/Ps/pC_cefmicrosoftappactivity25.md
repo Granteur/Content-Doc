@@ -25,20 +25,23 @@ cef-microsoft-app-activity = {
     """\sflexString1=({activity}[^=]{1,2000}?)\.?\s{1,100}(\w+=|$)""",
     """"ObjectId":"(Unknown|Not Available|({object}[^"]{1,2000}?))\s{0,100}"""",
     """\sfname=\s{0,100}(N\/A|({object}[^=]{1,2000}?))\s{0,100}(\w+=|$)""",
-    """\sfname=\s{0,100}(N\/A|({file_name}[^=]{1,2000}?))\s{1,100}(\w+=|$)""",
+    """((fileType=(n/a|mail|calendar-event)[^\n]{1,2000}?\sfname=\s{0,100}(N\/A|({subject}[^=]{1,2000}?)))|(fileType=group[^\n]{1,2000}?\sfname=\s{0,100}(N\/A|({group_name}[^=]{1,2000}?)))|\sfname=\s{0,100}(N\/A|({file_name}[^=]{1,2000}?)))\s{1,100}(\w+=|$)""",
     """\Wmsg=({additional_info}[^=]{1,2000}?)\s{1,100}(\w+=|$)""",
     """\ssuser=((\w+?_)?(\w+-)?\w+-\w+-\w+-\w+|(Unknown|Microsoft Intune|Microsoft Teams Services|Microsoft Online Services|Office 365 SharePoint Online|anonymous|EMPTY\.*|({user_email}[^@\s"]{1,2000}@[^@\s\."]{1,2000}\.[^\s",]{1,2000})|(({domain}[^\\\s@]{1,2000})\\)?(system|({user}[^@\s]{1,2000}))|(Sync Client|Office365 Backend Process|Device Registration Service|({user_fullname}[\w,\s]{1,2000}?))))\s{1,100}(\w+=|$)""",
     """"{1,20}UserId"{1,20}:"{1,20}({user_email}[^@\s"]{1,2000}?@({email_domain}[^@\s\."]{1,2000}\.[^\s",]{1,2000}))"{1,20}""",
-    """"ClientIP":"(::1|\[?({src_ip}[A-Fa-f:\d.]{1,2000}?)(\]:({src_port}\d{1,100}))?)"""",
-    """\ssrc=\[?({src_ip}((\d{1,3}\.){3}\d{1,3}|[A-Fa-f\d]{1,2000}:[a-fA-F\d:]{1,2000}))\]?(:({src_port}\d{1,100}))?\s\w+=""",
+    """"ClientIP":"(::1|::ffff:|\[?({src_ip}[A-Fa-f:\d.]{1,2000}?)(\]:({src_port}\d{1,100}))?)"""",
+    """\ssrc=\[?(::ffff:)?({src_ip}((\d{1,3}\.){3}\d{1,3}|[A-Fa-f\d]{1,2000}:[a-fA-F\d:]{1,2000}))\]?(:({src_port}\d{1,100}))?\s\w+=""",
     """"result":"({result}[^"]{1,2000})""",
     """"ResultStatus":"({result}[^"]{1,2000}?)"""",
     """\sdestinationServiceName\s{0,100}=({app}[^=]{1,2000}?)\s{1,100}(\w+=|$)""",
     """\ssourceServiceName =({app}[^=]{1,2000}?)\s{1,100}(\w+=|$)""",
+    """"app":\{[^\}]{1,2000}?"displayName":"({app}[^"]{1,2000})"""",
     """"User-Agent\\?"{1,20}:\\?"{1,20}({user_agent}[^"\\]{1,2000})"""
     """"UserAgent":"({user_agent}[^"]+)"""",
     """"ipAddress":"({dest_ip}[A-Fa-f.:\d]{1,2000})"""",
-    """"SourceFileName":"({src_file_name}[^",]{1,2000})"""
+    """"SourceFileName":"({src_file_name}[^",]{1,2000})""",
+    """"user":\{[^}]{1,20000}?displayName":"({user_fullname}[^"]{1,2000})"""",
+    """"resultReason":"({failure_reason}[^"]{1,2000}?)\s{0,100}""""
   
 }
 ```
